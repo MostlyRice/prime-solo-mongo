@@ -1,9 +1,9 @@
 1) db.createCollection('orders')
+let orders = db.orders
 
 2) db.getCollection('orders').insert({
   orderDate: ISODate("02/03/2017),
   });
-
 
 db.getCollection('orders').insert({
   orderDate: ISODate("04/04/2017"),
@@ -19,4 +19,8 @@ db.getCollection('orders').insert({
 
 5) db.getCollection('orders').update({orderDate: ISODate("2017-02-03T22:23:20.201Z")}, {$set: {orderTotal: 63}});
 
-6) 
+6) db.getCollection('orders').update({orderDate: ISODate("2017-04-04T00:00:00Z")},{$push:{lineItems: {"category": "Cursed left monkey paw"}}})
+
+7) db.getCollection('orders').update({ orderDate: new Date('2017-01-02')}, {$set: {lineItems: [{productName: "transistor radio", quantity: 2, unitPrice: 3}] }})
+
+8) db.getCollection('orders').find({ lineItems: { $elemMatch: { quantity: {$gt: 2, $lt: 10}}}})
